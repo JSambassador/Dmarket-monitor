@@ -27,7 +27,7 @@ class DMarketMonitor {
 
       const [stickerPrices, charmPrice] = await SteamService.getStickerAndCharmPrices(item.name);
       const attributeMarkup = this.calculateAttributeMarkup(stickerPrices, charmPrice);
-      const sellerMarkup = item.currentPrice - item.lastSalePrice;
+      const sellerMarkup = item.currentPrice - (item.lastSalePrice ?? 0);
       const profitPercentage = ((attributeMarkup - sellerMarkup) / item.currentPrice) * 100;
 
       if (profitPercentage >= PROFIT_THRESHOLD) {
@@ -50,13 +50,13 @@ class DMarketMonitor {
 Тип: ${item.type}
 Название: ${item.name}
 Текущая цена: $${item.currentPrice}
-Последняя цена продажи: $${item.lastSalePrice}
-Средняя цена за неделю: $${item.averageWeeklyPrice}
+Последняя цена продажи: $${item.lastSalePrice ?? 0}
+Средняя цена за неделю: $${item.averageWeeklyPrice ?? 0}
 Наличие наклеек или брелков: ${item.hasStickerOrCharm}
 Сувенирный предмет: ${item.isSouvenirItem}
-Наценка за атрибутику: $${item.attributeMarkup.toFixed(2)}
-Наценка продавца: $${item.sellerMarkup.toFixed(2)}
-Профит: ${item.profitPercentage.toFixed(2)}%
+Наценка за атрибутику: $${item.attributeMarkup?.toFixed(2) ?? '0.00'}
+Наценка продавца: $${item.sellerMarkup?.toFixed(2) ?? '0.00'}
+Профит: ${item.profitPercentage?.toFixed(2) ?? '0.00'}%
 `;
       await TelegramService.sendMessage(message);
     }

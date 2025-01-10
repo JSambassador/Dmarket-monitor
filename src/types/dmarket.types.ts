@@ -8,10 +8,13 @@ export interface DMarketApiConfig {
     type: string;
     name: string;
     currentPrice: number;
-    lastSalePrice: number;
-    averageWeeklyPrice: number;
+    lastSalePrice?: number;
+    averageWeeklyPrice?: number;
     hasStickerOrCharm: boolean;
     isSouvenirItem: boolean;
     assetId?: string;
     gameId?: string;
+    attributeMarkup?: number;
+    sellerMarkup?: number;
+    profitPercentage?: number;
   }
