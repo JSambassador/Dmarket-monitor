@@ -1,6 +1,12 @@
 import axios, { AxiosInstance } from 'axios';
 import crypto from 'crypto';
 
+interface DMarketApiConfig {
+  baseUrl: string;
+  publicKey: string;
+  secretKey: string;
+}
+
 export class DMarketApiService {
   private static instance: DMarketApiService;
   private apiClient: AxiosInstance;
@@ -63,6 +69,7 @@ export class DMarketApiService {
     offset?: number;
     orderBy?: string;
     title?: string;
+    currency: string;
   }) {
     const queryParams = new URLSearchParams();
     Object.entries(params).forEach(([key, value]) => {
@@ -77,6 +84,7 @@ export class DMarketApiService {
     gameId: string;
     itemName: string;
     period?: string;
+    currency: string;
   }) {
     const queryParams = new URLSearchParams(params as any);
     const path = `/price-history/v1/items?${queryParams.toString()}`;

@@ -15,7 +15,8 @@
     "dotenv": "^16.0.3",
     "node-html-parser": "^6.1.12",
     "playwright": "^1.40.1",
-    "telegram-bot-client": "^2.0.1"
+    "telegram-bot-client": "^2.0.1",
+    "tweetnacl": "^1.0.3"
   },
   "devDependencies": {
     "@types/node": "^18.14.6",
