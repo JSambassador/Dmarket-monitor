@@ -11,8 +11,8 @@ export class DMarketApiService {
   private static instance: DMarketApiService;
   private apiClient: AxiosInstance;
   private config: DMarketApiConfig;
-
-  private constructor(config: DMarketApiConfig) {
+  // must be private, change for test
+  public constructor(config: DMarketApiConfig) {
     this.config = config;
     this.apiClient = axios.create({
       baseURL: config.baseUrl,
@@ -87,7 +87,7 @@ export class DMarketApiService {
     currency: string;
   }) {
     const queryParams = new URLSearchParams(params as any);
-    const path = `/price-history/v1/items?${queryParams.toString()}`;
+    const path = `/marketplace-api/v1/price-history?${queryParams.toString()}`;
     return this.makeRequest('GET', path);
   }
 }
